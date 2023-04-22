@@ -1,0 +1,6 @@
+x = int(input())
+y = int(input())
+z = int(input())
+myfile = open("xyz in file.txt", "w")
+print(x, y, z, sep="\n", file=myfile)
+myfile.close()
