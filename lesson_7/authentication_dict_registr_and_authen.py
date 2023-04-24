@@ -24,12 +24,12 @@ def get_password():
 
 def check_password(password):
     if nm not in data_base:
-        print("Authentification Error. Check name")
+        print("Authentication Error. Check name")
     elif password == data_base[nm]:
         print(f"Hey,{nm}!")
         return True
     else:
-        print("Authentification Error. Check password")
+        print("Authentication Error. Check password")
 
 
 def registration():
