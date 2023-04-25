@@ -67,4 +67,4 @@ try:
         else:
             print("Please, select 'a' or 'r'")
 except KeyboardInterrupt:
-    print("\n""You have STOPPED the execution of the program")
+    print("\nYou have STOPPED the execution of the program")
