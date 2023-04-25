@@ -16,9 +16,6 @@ try:
     class VerifyNamePassword(User):
         """Проверка введенных данных пользователя"""
 
-        def __init__(self):
-            super().__init__(user.name, user.password)
-
         def check_name(self):
             if len(user.name) < 2:
                 print("Error.The name is too short."
@@ -41,9 +38,6 @@ try:
 
     class Registration(User):
         """Регистрация пользователя. Довавление имени и пароля пользователя в базу данных"""
-
-        def __init__(self):
-            super().__init__(user.name, user.password)
 
         def registration_name_and_passwords(self):
             if user.name in data_base:

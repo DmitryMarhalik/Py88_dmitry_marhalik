@@ -11,8 +11,6 @@ class User:
 
 try:
     class VerifyNamePassword(User):
-        def __init__(self):
-            User.__init__(self, self.name, self.password)
 
         def check_name(self):
             if len(us.name) < 2:
@@ -35,8 +33,6 @@ try:
 
 
     class Registration(User):
-        def __init__(self):
-            User.__init__(self, self.name, self.password)
 
         def registration_name_and_passwords(self):
             if us.name in data_base:
