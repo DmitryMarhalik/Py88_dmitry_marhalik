@@ -7,9 +7,9 @@ with open("data_base_authentication.json", "r") as my_json_file:
 class User:
     """Введенные данные пользователя"""
 
-    def __init__(self, input_name, input_password):
-        self.name = input_name
-        self.password = input_password
+    def __init__(self):
+        self.name = input("Enter name: ")
+        self.password = input("Enter password: ")
 
 
 try:
@@ -54,13 +54,13 @@ try:
         choice = input("For 'authentication' enter 'a' and press 'Enter',\n"
                        "For 'registration' enter 'r' and press 'Enter: \n")
         if choice == "a":
-            user = User(input("Enter name: "), input("Enter password: "))
-            varify_name_password = VerifyNamePassword.check_name(user.name) and \
-                                   VerifyNamePassword.check_password(user.password)
+            user = User()
+            varify_name_password = VerifyNamePassword.check_name(user.name), \
+                VerifyNamePassword.check_password(user.password)
             if varify_name_password:
                 break
         elif choice == "r":
-            user = User(input("Enter name: "), input("Enter password: "))
+            user = User()
             varify_name = VerifyNamePassword.check_name(user.name)
             if varify_name:
                 Registration.registration_name_and_passwords(user.password)
