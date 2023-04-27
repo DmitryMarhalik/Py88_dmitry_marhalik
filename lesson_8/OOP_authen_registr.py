@@ -45,7 +45,7 @@ try:
             else:
                 data_base.update({user.name: user.password})
                 print("You have been successfully registered")
-                with open("data_base_authentication.json", "a") as json_file:
+                with open("data_base_authentication.json", "w") as json_file:
                     json.dump(data_base, json_file, indent=4)
             return data_base
 
