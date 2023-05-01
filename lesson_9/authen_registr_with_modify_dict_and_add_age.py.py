@@ -27,7 +27,7 @@ class User:
         self.password = input_password
         self.age = input_age
 
-    def update_name_age(self, new_login, new_age):
+    def update_login_age(self, new_login, new_age):
         self.login = new_login
         self.age = new_age
 
