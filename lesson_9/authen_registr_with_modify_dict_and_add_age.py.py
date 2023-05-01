@@ -4,7 +4,7 @@ with open("data_base_authentication.json", "r") as my_json_file:
     data_base = json.load(my_json_file)
 
 
-# """переобразование изначальной базы данных"""
+# """преобразование изначальной базы данных"""
 # def modify_dict():
 #     list_base = []
 #     for k, v in data_base.items():
