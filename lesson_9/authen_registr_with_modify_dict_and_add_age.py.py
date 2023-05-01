@@ -97,8 +97,8 @@ try:
 
 
     while True:
-        choice = input("For 'authentication' enter 'a' and press 'Enter',\n"
-                       "For 'registration' enter 'r' and press 'Enter: \n")
+        choice = input("\nfor 'authentication' enter 'a' and press 'Enter'\n"
+                       "for 'registration' enter 'r' and press 'Enter': \n")
         if choice == "a":
             user = User(input("Enter login: "), input("Enter password: "))
             if AuthenticationSystem.check_len_login() and \
