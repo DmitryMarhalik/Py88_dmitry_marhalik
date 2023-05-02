@@ -73,6 +73,7 @@ try:
                 print("Authentication Error. Check login")
             elif AuthenticationSystem.chek_password():
                 print(f"Hey,{user.login}!")
+                return True
             else:
                 print("Authentication Error. Check password")
 
