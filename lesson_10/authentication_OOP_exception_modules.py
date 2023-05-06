@@ -4,7 +4,7 @@ from authentication_and_data_storage import AuthenticationSystem, data_base
 from user import User
 
 
-class StartProgramm:
+class StartProgram:
     @staticmethod
     def get_login():
         return input("Enter login: ")
@@ -22,7 +22,7 @@ class StartProgramm:
             choosing_an_action = input("\nfor 'authentication' enter 'a' and press 'Enter'\n"
                                        "for 'registration' enter 'r' and press 'Enter': \n")
             if choosing_an_action == "a":
-                login, password = StartProgramm.get_login(), StartProgramm.get_password()
+                login, password = StartProgram.get_login(), StartProgram.get_password()
                 if AuthenticationSystem.check_len_login(self, login) and \
                         AuthenticationSystem.check_login_password(self, login, password):
                     break
@@ -31,7 +31,7 @@ class StartProgramm:
                     raise NameError
 
             elif choosing_an_action == "r":
-                login, password, age = StartProgramm.get_login(), StartProgramm.get_password(), StartProgramm.get_age()
+                login, password, age = StartProgram.get_login(), StartProgram.get_password(), StartProgram.get_age()
                 if AuthenticationSystem.check_len_login(self, login):
                     RegistrationSystem.registration_name_and_passwords(self, login, password, age)
                 else:
@@ -59,4 +59,4 @@ class RegistrationSystem(AuthenticationSystem):
         return data_base
 
 
-StartProgramm().start()
+StartProgram().start()
