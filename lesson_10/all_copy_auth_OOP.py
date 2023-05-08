@@ -34,30 +34,28 @@ class DataStorage:
 
 
 class StartProgramm:
-    @staticmethod
-    def get_login():
+
+    def get_login(self):
         return input("Enter login: ")
 
-    @staticmethod
-    def get_password():
+    def get_password(self):
         return input("Enter password: ")
 
-    @staticmethod
-    def get_age():
+    def get_age(self):
         return input("Enter age: ")
 
     def start(self):
         choosing_an_action = input("\nfor 'authentication' enter 'a' and press 'Enter'\n"
                                    "for 'registration' enter 'r' and press 'Enter': \n")
         if choosing_an_action == "a":
-            login, password = StartProgramm.get_login(), StartProgramm.get_password()
-            if AuthenticationSystem.check_len_login(self, login):
-                AuthenticationSystem.check_login_password(self, login, password)
+            login, password = StartProgramm().get_login(), StartProgramm().get_password()
+            if AuthenticationSystem().check_len_login(login):
+                AuthenticationSystem().check_login_password(login, password)
         elif choosing_an_action == "r":
-            login, password, age = StartProgramm.get_login(), StartProgramm.get_password(), StartProgramm.get_age()
+            login, password, age = StartProgramm().get_login(), StartProgramm().get_password(), StartProgramm().get_age()
             # client = User(login, password, age)
-            if AuthenticationSystem.check_len_login(self, login):
-                RegistrationSystem.registration_name_and_passwords(self, login, password, age)
+            if AuthenticationSystem().check_len_login(login):
+                RegistrationSystem().registration_name_and_passwords(login, password, age)
         else:
             print("Please, select 'a' or 'r'")
 

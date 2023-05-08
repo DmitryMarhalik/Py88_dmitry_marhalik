@@ -23,17 +23,17 @@ class StartProgram:
                                        "for 'registration' enter 'r' and press 'Enter': \n")
             if choosing_an_action == "a":
                 login, password = StartProgram.get_login(), StartProgram.get_password()
-                if AuthenticationSystem.check_len_login(self, login) and \
-                        AuthenticationSystem.check_login_password(self, login, password):
+                if AuthenticationSystem().check_len_login(login) and \
+                        AuthenticationSystem().check_login_password(login, password):
                     break
-                elif not AuthenticationSystem.check_login_in_data_base(self, login) or \
-                        not AuthenticationSystem.check_len_login(self, login):
+                elif not AuthenticationSystem().check_login_in_data_base(login) or \
+                        not AuthenticationSystem().check_len_login(login):
                     raise NameError
 
             elif choosing_an_action == "r":
                 login, password, age = StartProgram.get_login(), StartProgram.get_password(), StartProgram.get_age()
-                if AuthenticationSystem.check_len_login(self, login):
-                    RegistrationSystem.registration_name_and_passwords(self, login, password, age)
+                if AuthenticationSystem().check_len_login(login):
+                    RegistrationSystem().registration_name_and_passwords(login, password, age)
                 else:
                     raise NameError
             else:
