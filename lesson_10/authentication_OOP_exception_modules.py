@@ -27,12 +27,12 @@ class StartProgram:
                         AuthenticationSystem().check_login_password(login, password):
                     break
                 elif not AuthenticationSystem.check_login_in_data_base(login) or \
-                        not AuthenticationSystem().check_len_login(login):
+                        not AuthenticationSystem.check_len_login(login):
                     raise NameError
 
             elif choosing_an_action == "r":
-                login, password, age = StartProgram().get_login(), StartProgram().get_password(), StartProgram().get_age()
-                if AuthenticationSystem().check_len_login(login):
+                login, password, age = StartProgram.get_login(), StartProgram.get_password(), StartProgram.get_age()
+                if AuthenticationSystem.check_len_login(login):
                     RegistrationSystem().registration_name_and_passwords(login, password, age)
                 else:
                     raise NameError

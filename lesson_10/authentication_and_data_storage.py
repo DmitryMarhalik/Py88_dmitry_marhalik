@@ -3,8 +3,8 @@ import json
 
 class DataStorage:
     PATH_TO_STORE = "/home/dm/PycharmProjects/pythonProject/dmhome/lesson_10/data_base_authentication.json"
-
-    def open_data(self):
+    @staticmethod
+    def open_data():
         try:
             with open(DataStorage.PATH_TO_STORE, "r") as my_json_file:
                 data_base = json.load(my_json_file)
@@ -20,7 +20,7 @@ class DataStorage:
         return data_base
 
 
-data_base = DataStorage().open_data()
+data_base = DataStorage.open_data()
 
 
 class AuthenticationSystem:
