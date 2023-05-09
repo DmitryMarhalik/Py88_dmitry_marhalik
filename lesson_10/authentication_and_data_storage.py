@@ -25,27 +25,27 @@ data_base = DataStorage().open_data()
 
 class AuthenticationSystem:
     """Проверка введенных данных пользователя"""
-
-    def check_login_in_data_base(self, login):
+    @staticmethod
+    def check_login_in_data_base(login):
         for i in data_base:
             if i["login"] == login:
                 return True
-
-    def check_len_login(self, login):
+    @staticmethod
+    def check_len_login(login):
         if 2 > len(login) or len(login) > 15:
             return False
         else:
             return login
-
-    def chek_password(self, login, password):
+    @staticmethod
+    def chek_password(login, password):
         for i in data_base:
             if login and password in i.values():
                 return True
 
     def check_login_password(self, login, password):
-        if not AuthenticationSystem.check_login_in_data_base(self, login):
+        if not AuthenticationSystem.check_login_in_data_base(login):
             return False
-        elif AuthenticationSystem.chek_password(self, login, password):
+        elif AuthenticationSystem.chek_password(login, password):
             print(f"Hey,{login}!")
             return True
         else:

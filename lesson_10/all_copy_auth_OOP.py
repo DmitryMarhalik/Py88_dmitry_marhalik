@@ -24,7 +24,7 @@ class DataStorage:
         except FileNotFoundError:
             print("data_base file not found, please complete the registration")
             data_base = []
-            data_base.append({"login": "aa", "password": "0", "age": "0"})
+            data_base.append({"login": "nomber1", "password": "0", "age": "0"})
             with open(DataStorage.PATH_TO_STORE, "w") as json_file:
                 json.dump(data_base, json_file, indent=4)
 
@@ -49,12 +49,12 @@ class StartProgramm:
                                    "for 'registration' enter 'r' and press 'Enter': \n")
         if choosing_an_action == "a":
             login, password = StartProgramm().get_login(), StartProgramm().get_password()
-            if AuthenticationSystem().check_len_login(login):
+            if AuthenticationSystem.check_len_login(login):
                 AuthenticationSystem().check_login_password(login, password)
         elif choosing_an_action == "r":
             login, password, age = StartProgramm().get_login(), StartProgramm().get_password(), StartProgramm().get_age()
             # client = User(login, password, age)
-            if AuthenticationSystem().check_len_login(login):
+            if AuthenticationSystem.check_len_login(login):
                 RegistrationSystem().registration_name_and_passwords(login, password, age)
         else:
             print("Please, select 'a' or 'r'")
@@ -63,12 +63,14 @@ class StartProgramm:
 class AuthenticationSystem:
     """Проверка введенных данных пользователя"""
 
-    def check_login_in_data_base(self, login):
+    @staticmethod
+    def check_login_in_data_base(login):
         for i in data_base:
             if i["login"] == login:
                 return True
 
-    def check_len_login(self, login):
+    @staticmethod
+    def check_len_login(login):
         if len(login) < 2:
             print("Error.The name is too short."
                   "The login must contain more than 1 character")
@@ -77,16 +79,16 @@ class AuthenticationSystem:
                   "The login must contain less than 15 character")
         else:
             return login
-
-    def chek_password(self, login, password):
+    @staticmethod
+    def chek_password(login, password):
         for i in data_base:
             if login and password in i.values():
                 return True
 
     def check_login_password(self, login, password):
-        if not AuthenticationSystem.check_login_in_data_base(self, login):
+        if not AuthenticationSystem.check_login_in_data_base(login):
             print("Authentication Error. Check login")
-        elif AuthenticationSystem.chek_password(self, login, password):
+        elif AuthenticationSystem.chek_password(login, password):
             print(f"Hey,{login}!")
             return True
         else:
@@ -97,7 +99,7 @@ class RegistrationSystem(AuthenticationSystem):
     """Регистрация пользователя. Довавление имени и пароля пользователя в базу данных"""
 
     def registration_name_and_passwords(self, login, password, age):
-        if AuthenticationSystem.check_login_in_data_base(self, login):
+        if AuthenticationSystem.check_login_in_data_base(login):
             print("Your login has already been registered")
         else:
             client = User(login, password, age)

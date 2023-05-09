@@ -5,14 +5,16 @@ from user import User
 
 
 class StartProgram:
-
-    def get_login(self):
+    @staticmethod
+    def get_login():
         return input("Enter login: ")
 
-    def get_password(self):
+    @staticmethod
+    def get_password():
         return input("Enter password: ")
 
-    def get_age(self):
+    @staticmethod
+    def get_age():
         return input("Enter age: ")
 
     def start(self):
@@ -20,11 +22,11 @@ class StartProgram:
             choosing_an_action = input("\nfor 'authentication' enter 'a' and press 'Enter'\n"
                                        "for 'registration' enter 'r' and press 'Enter': \n")
             if choosing_an_action == "a":
-                login, password = StartProgram().get_login(), StartProgram().get_password()
-                if AuthenticationSystem().check_len_login(login) and \
+                login, password = StartProgram.get_login(), StartProgram.get_password()
+                if AuthenticationSystem.check_len_login(login) and \
                         AuthenticationSystem().check_login_password(login, password):
                     break
-                elif not AuthenticationSystem().check_login_in_data_base(login) or \
+                elif not AuthenticationSystem.check_login_in_data_base(login) or \
                         not AuthenticationSystem().check_len_login(login):
                     raise NameError
 
@@ -42,7 +44,7 @@ class RegistrationSystem(AuthenticationSystem):
     """Регистрация пользователя. Довавление имени и пароля пользователя в базу данных"""
 
     def registration_name_and_passwords(self, login, password, age):
-        if AuthenticationSystem.check_login_in_data_base(self, login):
+        if AuthenticationSystem.check_login_in_data_base(login):
             print("Your login has already been registered")
         else:
             client = User(login, password, age)
