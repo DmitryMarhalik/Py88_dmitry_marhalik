@@ -35,7 +35,8 @@ class User:
 class AuthenticationSystem:
     """Проверка введенных данных пользователя"""
 
-    def check_login_in_data_base(self, login):
+    @staticmethod
+    def check_login_in_data_base(login):
         for i in data_base:
             if i["login"] == login:
                 return True
@@ -47,8 +48,8 @@ class AuthenticationSystem:
     # return bool(list(filter(lambda i: i['login'] == d, data_base))) -----> True or False
 
     # return (bool(next((i for i in lstdict if i["login"] == user.login),False)))
-
-    def check_len_login(self, login):
+    @staticmethod
+    def check_len_login(login):
         if len(login) < 2:
             print("Error.The name is too short."
                   "The login must contain more than 1 character")
@@ -64,7 +65,7 @@ class AuthenticationSystem:
                 return True
 
     def check_login_password(self, login, password):
-        if not AuthenticationSystem.check_login_in_data_base(self, login):
+        if not AuthenticationSystem.check_login_in_data_base(login):
             print("Authentication Error. Check login")
         elif AuthenticationSystem.chek_password(self, login, password):
             print(f"Hey,{login}!")
@@ -77,7 +78,7 @@ class RegistrationSystem(AuthenticationSystem):
     """Регистрация пользователя. Довавление имени и пароля пользователя в базу данных"""
 
     def registration_name_and_passwords(self, login, password, age):
-        if AuthenticationSystem.check_login_in_data_base(self, login):
+        if AuthenticationSystem.check_login_in_data_base(login):
             print("Your login has already been registered")
         else:
             data_base.append({
@@ -96,12 +97,12 @@ while True:
                                "for 'registration' enter 'r' and press 'Enter': \n")
     if choosing_an_action == "a":
         client = User(input("Enter login: "), input("Enter password: "))
-        if AuthenticationSystem().check_len_login(client.login) and \
+        if AuthenticationSystem.check_len_login(client.login) and \
                 AuthenticationSystem().check_login_password(client.login, client.password):
             break
     elif choosing_an_action == "r":
         client = User(input("Enter login: "), input("Enter password: "), input("Enter age: "))
-        if AuthenticationSystem().check_len_login(client.login):
+        if AuthenticationSystem.check_len_login(client.login):
             RegistrationSystem().registration_name_and_passwords(client.login, client.password, client.age)
     else:
         print("Please, select 'a' or 'r'")
