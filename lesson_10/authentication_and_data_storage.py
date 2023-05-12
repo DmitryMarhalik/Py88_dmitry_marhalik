@@ -3,6 +3,7 @@ import json
 
 class DataStorage:
     PATH_TO_STORE = "/home/dm/PycharmProjects/pythonProject/dmhome/lesson_10/data_base_authentication.json"
+
     @staticmethod
     def open_data():
         try:
@@ -14,9 +15,6 @@ class DataStorage:
             data_base.append({"login": "aa", "password": "0", "age": "0"})
             with open(DataStorage.PATH_TO_STORE, "w") as json_file:
                 json.dump(data_base, json_file, indent=4)
-
-        with open("data_base_authentication.json", "r") as my_json_file:
-            data_base = json.load(my_json_file)
         return data_base
 
 
@@ -25,11 +23,13 @@ data_base = DataStorage.open_data()
 
 class AuthenticationSystem:
     """Проверка введенных данных пользователя"""
+
     @staticmethod
     def check_login_in_data_base(login):
         for i in data_base:
             if i["login"] == login:
                 return True
+
     @staticmethod
     def check_len_login(login):
         if 2 > len(login) or len(login) > 15:
