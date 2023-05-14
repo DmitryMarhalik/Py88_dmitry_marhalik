@@ -38,8 +38,8 @@ class AuthenticationSystem:
             return login
 
     def chek_password(self, login, password):
-        for i in data_base:
-            if login and password in i.values():
+        for user in data_base:
+            if user["login"] == login and user["password"] == password in user.values():
                 return True
 
     def check_login_password(self, login, password):
