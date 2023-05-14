@@ -82,8 +82,9 @@ class AuthenticationSystem:
 
     @staticmethod
     def chek_password(login, password):
-        for i in data_base:
-            if login and password in i.values():
+        for user in data_base:
+            if user["login"] == login and user["password"] == password in user.values():
+                # if ("login", login) in i.items() and ("password", password) in i.items(): second version
                 return True
 
     @staticmethod
