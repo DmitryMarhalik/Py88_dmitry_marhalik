@@ -39,63 +39,61 @@ while True:
     else:
         print(wrong())
 
-    ###################################################################################################
+    # version with lambda ##################################################################################
+import re
 
-# expression = input("Please,enter the first, second numbers and operation separated by a space: ")
-#
-#
-# def check_expression(inpt):
-#     output = re.match(r"^(\d+(\.\d+)?)(\s([\/\*\^\**\+\-]\s(\d+(\.\d+)?)))$", inpt)
-#     return output
-#
-#
-# st = re.split(" ", expression)
-# digit1 = st[0]
-# oper = st[1]
-# digit2 = st[2]
-#
-#
-# def check_float():
-#     for _ in st:
-#         if "." in digit1 or "." in digit2:
-#             if oper == "-":
-#                 res = float(digit1) - float(digit2)
-#             elif oper == "+":
-#                 res = float(digit1) + float(digit2)
-#             elif oper == "*":
-#                 res = float(digit1) * float(digit2)
-#             elif oper == "/":
-#                 try:
-#                     res = float(digit1) / float(digit2)
-#                 except ZeroDivisionError:
-#                     print("Error, cannot be divided by zero.")
-#                     exit()
-#             elif oper == "**" or oper == "^":
-#                 res = float(digit1) ** float(digit2)
-#             else:
-#                 return "something went wrong"
-#             return float(res)
-#         return False
-#
-#
-# ch = check_expression(expression)
-# fl = check_float()
-#
-# if ch:
-#     if fl:
-#         print(fl)
-#     elif oper == "-":
-#         print(int(digit1) - int(digit2))
-#     elif oper == "+":
-#         print(int(digit1) + int(digit2))
-#     elif oper == "**" or oper == "^":
-#         print(int(digit1) ** int(digit2))
-#     elif oper == "/":
-#         try:
-#             print(int(digit1) / int(digit2))
-#         except ZeroDivisionError:
-#             print("Error, cannot be divided by zero.")
-#     elif oper == "*":
-#         print(int(digit1) * int(digit2))
-#     else:
-#         print("something went wrong")
+while True:
+    expression = input("Please,enter the first, second numbers and operation separated by a space: ")
+    if re.match(r"^(\d+(\.\d+)?)(\s([\/\*\^\**\+\-]\s(\d+(\.\d+)?)))$", expression):
+        st = re.split(" ", expression)
+        digit1 = float(st[0]) if "." in st[0] else int(st[0])
+        digit2 = float(st[2]) if "." in st[2] else int(st[2])
+        if st[1] == "-":
+            res = lambda digit1, digit2: digit1 - digit2
+            print(res(digit1, digit2))
+        elif st[1] == "+":
+            res = lambda digit1, digit2: digit1 + digit2
+            print(res(digit1, digit2))
+        elif st[1] == "*":
+            res = lambda digit1, digit2: digit1 * digit2
+            print(res(digit1, digit2))
+        elif st[1] == "**" or st[1] == "^":
+            res = lambda digit1, digit2: digit1 ** digit2
+            print(res(digit1, digit2))
+        elif st[1] == "/":
+            try:
+                res = lambda digit1, digit2: digit1 / digit2
+                print(res(digit1, digit2))
+            except ZeroDivisionError:
+                print("Error, cannot be divided by zero")
+        else:
+            print("Something went wrong")
+    else:
+        print("Incorrect input")
+
+# short version ##########################################################################################
+import re
+
+while True:
+    expression = input("Please,enter the first, second numbers and operation separated by a space: ")
+    if re.match(r"^(\d+(\.\d+)?)(\s([\/\*\^\**\+\-]\s(\d+(\.\d+)?)))$", expression):
+        st = re.split(" ", expression)
+        digit1 = float(st[0]) if "." in st[0] else int(st[0])
+        digit2 = float(st[2]) if "." in st[2] else int(st[2])
+        if st[1] == "-":
+            print(f"result = {digit1 - digit2}")
+        elif st[1] == "+":
+            print(f"result = {digit1 + digit2}")
+        elif st[1] == "*":
+            print(f"result = {digit1 * digit2}")
+        elif st[1] == "**" or st[1] == "^":
+            print(f"result = {digit1 ** digit2}")
+        elif st[1] == "/":
+            try:
+                print(f"result = {digit1 / digit2}")
+            except ZeroDivisionError:
+                print("Error, cannot be divided by zero")
+        else:
+            print("Something went wrong")
+    else:
+        print("Incorrect input")
