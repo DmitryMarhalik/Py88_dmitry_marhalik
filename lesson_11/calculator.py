@@ -76,7 +76,7 @@ import re
 
 while True:
     expression = input("Please,enter the first, second numbers and operation separated by a space: ")
-    if re.match(r"^(\d+(\.\d+)?)\s(\*{0,2}|[/*^+-])\s(\d+(\.\d+)?)$", expression):
+    if re.fullmatch(r"(\d+(\.\d+)?)\s(\*{0,2}|[/*^+-])\s(\d+(\.\d+)?)", expression):
         st = re.split(" ", expression)
         digit1 = float(st[0]) if "." in st[0] else int(st[0])
         digit2 = float(st[2]) if "." in st[2] else int(st[2])
