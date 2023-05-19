@@ -26,7 +26,6 @@ class DataStorage:
         except FileNotFoundError:
             print("data_base file not found, please start registration")
             data_base = []
-            data_base.append({"login": "1@gmail.com", "password": "0", "age": "0"})
             with open(DataStorage.PATH_TO_STORE, "w") as json_file:
                 json.dump(data_base, json_file, indent=4)
         return data_base
