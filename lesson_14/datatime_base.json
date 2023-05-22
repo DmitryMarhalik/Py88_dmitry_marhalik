@@ -1,0 +1,52 @@
+[
+    {
+        "id product": "4",
+        "amount of food": "122",
+        "time of use": "2023-05-02 00:27:00.765293"
+    },
+    {
+        "id product": "3",
+        "amount of food": "322",
+        "time of use": "2023-05-03 00:27:00.765293"
+    },
+    {
+        "id product": "3",
+        "amount of food": "22",
+        "time of use": "2023-05-14 20:53:32.636088"
+    },
+    {
+        "id product": "4",
+        "amount of food": "12",
+        "time of use": "2023-05-12 00:27:00.765293"
+    },
+    {
+        "id product": "3",
+        "amount of food": "522",
+        "time of use": "2023-05-13 00:27:00.765293"
+    },
+    {
+        "id product": "1",
+        "amount of food": "198",
+        "time of use": "2023-05-14 20:53:32.636088"
+    },
+    {
+        "id product": "1",
+        "amount of food": "331",
+        "time of use": "2023-05-15 00:27:00.765293"
+    },
+    {
+        "id product": "3",
+        "amount of food": "150",
+        "time of use": "2023-05-15 00:27:00.765293"
+    },
+    {
+        "id product": "4",
+        "amount of food": "100",
+        "time of use": "2023-05-17 20:53:32.636088"
+    },
+    {
+        "id product": "4",
+        "amount of food": "300",
+        "time of use": "2023-05-17 06:06:13.285103"
+    }
+]
