@@ -27,8 +27,9 @@ class DataStorage:
 
 
 class StartProgram:
-    action= input("Select an action and press 'Enter': \n   'a' - to add product in database, \n"
-                     "   'e' - to fix the meal time,\n   'c' - to calculate the result -->:\n    ")
+    action = input("Select an action and press 'Enter': \n   'a' - to add product in database, \n"
+                   "   'e' - to fix the meal time,\n   'c' - to calculate the result -->:\n    ")
+
     @classmethod
     def start(cls):
         if cls.action == "a":
@@ -44,8 +45,8 @@ class StartProgram:
             else:
                 eating_mael_time.add_datetime()
         elif cls.action == "c":
-            day_ago = input("How many days ago to display the result? Enter days: \n")
-            RequestCalculation().calculation(day_ago)
+            days_ago = input("How many days ago to display the result? Enter days: \n")
+            RequestCalculation().calculation(days_ago)
 
 
 class Products:
@@ -93,15 +94,13 @@ class EatingMeal:
 
 
 class RequestCalculation:
-    def calculation(self, day):
-        self.day = day
+    def calculation(self, days):
         id_and_amount, products, proteins, fats, carbohydrates, Kcal = [], [], [], [], [], []
-        day_ago = datetime.now() - timedelta(days=int(day))
+        days_ago = datetime.now() - timedelta(days=int(days))
         for dt in datatime_base:
             ob_data = datetime.strptime(dt["time of use"], "%Y-%m-%d %H:%M:%S.%f")
-            if day_ago <= ob_data:
+            if days_ago <= ob_data:
                 id_and_amount.append([dt["id product"], dt["amount of food"]])
-                print(id_and_amount)
         for value in products_base:
             for rslt in id_and_amount:
                 if value["id"] == rslt[0]:
