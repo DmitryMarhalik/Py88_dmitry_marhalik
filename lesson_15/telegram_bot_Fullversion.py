@@ -16,7 +16,7 @@ bot = telebot.TeleBot(TOKEN)
 def start(message):
     if check_id(message):
         markup = types.ReplyKeyboardMarkup()
-        button_1 = types.KeyboardButton("View all idproduct in the database")
+        button_1 = types.KeyboardButton("View all id of product in the database")
         button_2 = types.KeyboardButton("Add a product to the database")
         button_3 = types.KeyboardButton("Enter intake")
         button_4 = types.KeyboardButton("Calculation result")
@@ -43,7 +43,7 @@ def on_click(message):
                                                f"Your telegram id -- {telegram_id}.", reply_markup=markup)
         start(message)
 
-    elif message.text == "View all idproduct in the database":
+    elif message.text == "View all id of product in the database":
         postgres_insert_query = """select id,name from products order by name"""
         cursor.execute(postgres_insert_query, (message.from_user.id,))
         all_idproducts = cursor.fetchall()
@@ -51,8 +51,8 @@ def on_click(message):
         bot.send_message(message.from_user.id, "The database contains the following "
                                                "products and their IDs")
         for product in all_idproducts:
-            bot.send_message(message.from_user.id, f"id - {product[0]}--> "
-                                                   f"{product[1]}")
+            bot.send_message(message.from_user.id, f"{product[1]}--> "
+                                                   f"id - {product[0]}")
     elif message.text == "Add a product to the database":
         bot.send_message(message.from_user.id,
                          "Enter name_product, protein, fat , carbohydrate, kcal "
