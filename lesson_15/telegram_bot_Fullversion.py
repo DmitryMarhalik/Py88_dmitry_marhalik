@@ -17,7 +17,7 @@ def start(message):
     if check_id(message):
         markup = types.ReplyKeyboardMarkup()
         button_1 = types.KeyboardButton("View all idproduct in the database")
-        button_2 = types.KeyboardButton("Enter product in database")
+        button_2 = types.KeyboardButton("Add a product to the database")
         button_3 = types.KeyboardButton("Enter intake")
         button_4 = types.KeyboardButton("Calculation result")
         markup.add(button_1, button_2, button_3, button_4, row_width=1)
@@ -26,7 +26,7 @@ def start(message):
     else:
         markup = types.ReplyKeyboardMarkup()
         button_1 = types.KeyboardButton("Register")
-        markup.row(button_1)
+        markup.add(button_1)
         bot.send_message(message.from_user.id, "You are not registered. "
                                                "Please click the 'Register' button", reply_markup=markup)
         bot.register_next_step_handler(message, on_click)
@@ -54,7 +54,7 @@ def on_click(message):
         for product in all_idproducts:
             bot.send_message(message.from_user.id, f"id - {product[0]}--> "
                                                    f"{product[1]}")
-    elif message.text == "Enter product in database":
+    elif message.text == "Add a product to the database":
         bot.send_message(message.from_user.id,
                          "Enter name_product, protein, fat , carbohydrate, kcal "
                          "per 100 grams separated by a space: ")
@@ -132,7 +132,7 @@ def calculation_result(message):
         all_fats += el[1]
         all_carbohydrates += el[2]
         all_kcal += el[3]
-    count_of_product = dict(Counter(view_all_products))
+    count_of_product = Counter(view_all_products)
     nice_count_of_product = []
     for k, v in count_of_product.items():
         nice_count_of_product.append(f"{k}->{v} pieces\n")
