@@ -24,9 +24,8 @@ def start(message):
         bot.send_message(message.from_user.id, "Hello. Please, choice the operation", reply_markup=markup)
         bot.register_next_step_handler(message, on_click)
     else:
-        markup = types.ReplyKeyboardMarkup()
         button_1 = types.KeyboardButton("Register")
-        markup.add(button_1)
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True).add(button_1)
         bot.send_message(message.from_user.id, "You are not registered. "
                                                "Please click the 'Register' button", reply_markup=markup)
         bot.register_next_step_handler(message, on_click)
@@ -102,7 +101,7 @@ def intake(message):
     cursor.execute(postgres_insert_query2, (user_id, int(product_id), float(gram)))
     connection.commit()
     bot.send_message(message.from_user.id, "The intake added!")
-
+    connection.close()
 
 def calculation_result(message):
     days = int(message.text)
