@@ -1,10 +1,11 @@
 import json
+import os
 from datetime import datetime, timedelta
 
 
 class DataStorage:
-    PATH_TO_STORE_prod_base = "/home/dm/PycharmProjects/pythonProject/dmhome/lesson_14/products_base.json"
-    PATH_TO_STORE_datatime_base = "/home/dm/PycharmProjects/pythonProject/dmhome/lesson_14/datatime_base.json"
+    PATH_TO_STORE_prod_base = os.getcwd() + "/products_base.json"
+    PATH_TO_STORE_datatime_base = os.getcwd() + "/datatime_base.json"
 
     @classmethod
     def open_databases(cls):
@@ -24,6 +25,9 @@ class DataStorage:
             with open("datatime_base.json", "w") as json_file:
                 json.dump(datatime_base, json_file, indent=4)
         return products_base, datatime_base
+
+
+products_base, datatime_base = DataStorage.open_databases()
 
 
 class StartProgram:
@@ -46,7 +50,7 @@ class StartProgram:
                 eating_mael_time.add_datetime()
         elif cls.action == "c":
             days_ago = input("How many days ago to display the result? Enter days: \n")
-            RequestCalculation().calculation(days_ago)
+            FinallyResult().finally_calculation(days_ago)
 
 
 class Products:
@@ -94,15 +98,21 @@ class EatingMeal:
 
 
 class RequestCalculation:
-    def calculation(self, days):
-        id_and_amount, products, proteins, fats, carbohydrates, Kcal = [], [], [], [], [], []
+    def calculation_id_and_amount(self, days):
+        id_and_amount = []
         days_ago = datetime.now() - timedelta(days=int(days))
         for dt in datatime_base:
             ob_data = datetime.strptime(dt["time of use"], "%Y-%m-%d %H:%M:%S.%f")
             if days_ago <= ob_data:
                 id_and_amount.append([dt["id product"], dt["amount of food"]])
+        return id_and_amount
+
+
+class FinallyResult:
+    def finally_calculation(self, days_ago):
+        products, proteins, fats, carbohydrates, Kcal = [], [], [], [], []
         for value in products_base:
-            for rslt in id_and_amount:
+            for rslt in RequestCalculation().calculation_id_and_amount(days_ago):
                 if value["id"] == rslt[0]:
                     products.append(value["product"])
                     proteins.append((float(value["proteins"]) * (float(rslt[1]) / 100)))
@@ -115,5 +125,4 @@ class RequestCalculation:
                f"carbohydrates: {sum(carbohydrates)} gr; Kcal: {sum(Kcal)}"))
 
 
-products_base, datatime_base = DataStorage.open_databases()
 StartProgram().start()
