@@ -1,4 +1,5 @@
 import json
+
 import psycopg2
 from flask import Flask, request
 
@@ -56,7 +57,7 @@ def add_product():
               <input type="Carbohydrates" name="Carbohydrates"><br>
               <label for="Kcal"><b>Kcal</b></label>                  
               <input type="Kcal" name="Kcal"><br>
-              <button type="submit"c>Accept </button>
+              <button type="submit">Accept </button>
               <h4><a href='/'><= back</a></h4>
              </div>
            </form>

@@ -134,10 +134,10 @@ def calculation_result(message):
     count_of_product = Counter(view_all_products)
     nice_count_of_product = []
     for k, v in count_of_product.items():
-        nice_count_of_product.append(f"{k}->{v} pieces\n")
+        nice_count_of_product.append(f"{k}->{v} times\n")
     result_message = f"Нou have eaten the following foods:\n{''.join(nice_count_of_product)}\n" \
-                     f"Total amount of protein:  {all_proteins} gr,  fats: {all_fats} gr," \
-                     f"carbohydrates: {all_carbohydrates} gr,  Kcal: {all_kcal}"
+                     f"Total amount of protein:  {all_proteins} gr,\nfats: {all_fats} gr,\n" \
+                     f"carbohydrates: {all_carbohydrates} gr,\nKcal: {all_kcal}"
     bot.send_message(message.from_user.id, result_message)
 
 
