@@ -1,6 +1,6 @@
 import json
-import psycopg2
 
+import psycopg2
 from flask import Flask, request
 
 app = Flask(__name__)
@@ -75,8 +75,13 @@ def give_json():
         connection.commit()
         prod_db = cursor.fetchall()
         connection.close()
-        with open("db.json", "r") as my_json_file:
-            db = json.load(my_json_file)
+        try:
+            with open("db.json", "r") as my_json_file:
+                db = json.load(my_json_file)
+        except FileNotFoundError:
+            db = []
+            with open("db.json", "w") as json_file:
+                json.dump(db, json_file, indent=4)
         for row in prod_db:
             db.append({"Id": row[0],
                        "Product": row[1],
