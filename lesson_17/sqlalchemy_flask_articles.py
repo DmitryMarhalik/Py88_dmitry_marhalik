@@ -61,7 +61,7 @@ def article_page():
 
     elif request.method == 'POST':
         session = Session(bind=engine)
-        header = request.form.get('article_header')
+        header = request.form.get('article-header')
         article_text = request.form.get('article-content')
         art = Article(header=header, content=article_text)
         session.add(art)
