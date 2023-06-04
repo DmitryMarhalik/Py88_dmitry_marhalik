@@ -5,7 +5,7 @@ from datetime import datetime
 with open(os.getcwd()+"/products_base.json", "r") as my_json_file:
     products_base = json.load(my_json_file)
 
-with open("datatime_base.json", "r") as json_file:
+with open(os.getcwd()+"/datatime_base.json", "r") as json_file:
     datatime_base = json.load(json_file)
 
 
