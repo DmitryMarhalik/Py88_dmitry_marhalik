@@ -1,13 +1,17 @@
+import os
+
+from dotenv import load_dotenv
 from flask import Flask, request
 from sqlalchemy import (create_engine, Integer, String, Column, Text, ForeignKey)
 from sqlalchemy.orm import Session, DeclarativeBase
 
+load_dotenv()
 
 class Base(DeclarativeBase):
     pass
 
-
-engine = create_engine('postgresql+psycopg2://dm:113019@localhost/blog_system_sqlalchemy')
+password=os.getenv("PASSWORD")
+engine = create_engine(f'postgresql+psycopg2://dm:{password}@localhost/blog_system_sqlalchemy')
 app = Flask(__name__)
 
 
