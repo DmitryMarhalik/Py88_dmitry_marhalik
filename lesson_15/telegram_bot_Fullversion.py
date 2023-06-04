@@ -4,7 +4,6 @@ import psycopg2
 import telebot
 from telebot import types
 
-w=3
 from var import TOKEN, password
 
 connection = psycopg2.connect(user="dm", database="telegram_db_products",
