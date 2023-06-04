@@ -1,6 +1,6 @@
 import json
-import psycopg2
 
+import psycopg2
 from flask import Flask, request
 
 app = Flask(__name__)
