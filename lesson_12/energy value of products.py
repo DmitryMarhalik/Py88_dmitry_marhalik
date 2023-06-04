@@ -1,7 +1,8 @@
 import json
+import os
 from datetime import datetime
 
-with open("products_base.json", "r") as my_json_file:
+with open(os.getcwd()+"/products_base.json", "r") as my_json_file:
     products_base = json.load(my_json_file)
 
 with open("datatime_base.json", "r") as json_file:
