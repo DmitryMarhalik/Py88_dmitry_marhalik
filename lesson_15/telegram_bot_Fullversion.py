@@ -1,6 +1,6 @@
+import os
 from collections import Counter
 
-import os
 import psycopg2
 import telebot
 from dotenv import load_dotenv
