@@ -68,8 +68,8 @@ def article_page():
     elif request.method == 'POST':
         # with Session(autoflush=False, bind=engine) as session:
         session = Session(bind=engine)
-        header = request.form.get('article-header')
-        article_text = request.form.get('article-content')
+        header = request.form['article-header'] #first version
+        article_text = request.form.get('article-content') #second version
         art = Article(header=header, content=article_text)
         session.add(art)
         session.commit()
