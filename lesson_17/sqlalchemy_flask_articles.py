@@ -42,8 +42,10 @@ Base.metadata.create_all(bind=engine)
 def main_page():
     session = Session(bind=engine)
     count_of_articles = session.query(Article).count()
-    return f"Количество статей --> {count_of_articles}</br>" \
-           f"<button><a href='/article'>Написать новую статью --></a></button>"
+    return f"""<div align="center">
+                <h2>"Количество статей -->"{count_of_articles}</h2></br> 
+                <button><h2><a href='/article'>Написать новую статью --></a></h2></button>
+              </div>"""
 
 
 @app.route('/article', methods=['GET', 'POST'])
@@ -53,20 +55,23 @@ def article_page():
                    '<div class="container" align="center">\
                         <textarea name="article-header" placeholder="Введите заголовок" ' \
                'cols="80" rows="3"></textarea></br>\
-                        <textarea name="article-content" placeholder="Здесь пишется статья" ' \
+                        <textarea name="article-content" placeholder="Напишите здесь статью" ' \
                'cols="80" rows="20"></textarea></br>\
-                        <button type="submit">Create!</button>' \
+                        <button type="submit"><h4>Create!</h4></button>' \
                    '</div>\
                 </form><h4><a href="/">Go back home</a></h4>'
 
     elif request.method == 'POST':
+        # with Session(autoflush=False, bind=engine) as session:
         session = Session(bind=engine)
         header = request.form.get('article-header')
         article_text = request.form.get('article-content')
         art = Article(header=header, content=article_text)
         session.add(art)
         session.commit()
-        return """ <h1>text added successfully!</h1> 
+        return """ <div align="center">
+                     <h1>text added successfully!</h1> 
+                   </div>
                    <h4><a href='/article'><=Go back</a></h4>"""
 
 if __name__ == "__main__":
