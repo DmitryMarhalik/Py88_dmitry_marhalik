@@ -1,10 +1,10 @@
 import os
-from collections import Counter
-
 import psycopg2
 import telebot
+
 from dotenv import load_dotenv
 from telebot import types
+from collections import Counter
 
 load_dotenv()
 connection = psycopg2.connect(user="dm", database="telegram_db_products",
