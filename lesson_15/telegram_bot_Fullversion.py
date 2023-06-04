@@ -1,15 +1,16 @@
 from collections import Counter
 
+import os
 import psycopg2
 import telebot
+from dotenv import load_dotenv
 from telebot import types
 
-from var import TOKEN, password
-
+load_dotenv()
 connection = psycopg2.connect(user="dm", database="telegram_db_products",
-                              host="127.0.0.1", port="5432", password=password)
+                              host="127.0.0.1", port="5432", password=os.getenv("PASSWORD"))
 cursor = connection.cursor()
-bot = telebot.TeleBot(TOKEN)
+bot = telebot.TeleBot(os.getenv("TOKEN"))
 
 
 @bot.message_handler(commands=["start"])
@@ -102,6 +103,7 @@ def intake(message):
     connection.commit()
     bot.send_message(message.from_user.id, "The intake added!")
     connection.close()
+
 
 def calculation_result(message):
     days = int(message.text)
