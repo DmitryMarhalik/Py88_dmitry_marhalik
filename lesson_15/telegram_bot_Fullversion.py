@@ -17,8 +17,8 @@ bot = telebot.TeleBot(os.getenv("TOKEN"))
 def start(message):
     if check_id(message):
         markup = types.ReplyKeyboardMarkup()
-        button_1 = types.KeyboardButton("View all id's of products in the database")
-        button_2 = types.KeyboardButton("Add a product to the database")
+        button_1 = types.KeyboardButton("View all id's of products")
+        button_2 = types.KeyboardButton("Add a product")
         button_3 = types.KeyboardButton("Enter intake")
         button_4 = types.KeyboardButton("Calculation result")
         markup.add(button_1, button_2, button_3, button_4, row_width=1)
@@ -28,7 +28,7 @@ def start(message):
         button_1 = types.KeyboardButton("Register")
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True).add(button_1)
         bot.send_message(message.from_user.id, "You are not registered. "
-                                               "Please click the 'Register' button", reply_markup=markup)
+                                               "Please, click the 'Register' button", reply_markup=markup)
         bot.register_next_step_handler(message, on_click)
 
 
@@ -50,7 +50,7 @@ def on_click(message):
         all_idproducts = cursor.fetchall()
         connection.commit()
         bot.send_message(message.from_user.id, "The database contains the following "
-                                               "products and their IDs")
+                                               "products and their id's")
         for product in all_idproducts:
             bot.send_message(message.from_user.id, f"{product[1]}--> "
                                                    f"id - {product[0]}")
