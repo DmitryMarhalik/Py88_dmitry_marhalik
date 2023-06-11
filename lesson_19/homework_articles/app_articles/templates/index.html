@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>StartPage</title>
+      <style>
+           button {
+            background: #008EB0; /* Синий цвет фона */
+            color: #fff; /* Белый цвет текста */
+            border: none; /* Убираем рамку */
+            padding: 1rem 1.5rem; /* Поля вокруг текста */
+            margin-bottom: 1rem; /* Отступ снизу */
+           }
+           .green { background: #73A353; }
+           .red { background: #C1172C; }
+           .orange { background: #F7941E; }
+      </style>
+</head>
+<body>
+<div align="center">
+    <p><font size="4" color="blue" face="Arial">Количество: {{count}} статей</font></p>
+    <button  onclick="window.location.href = 'http://127.0.0.1:8000/create/';">Написать новую статью-></button>
+</div>
+</body>
+</html>
