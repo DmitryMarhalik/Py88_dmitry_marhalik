@@ -43,8 +43,7 @@ def on_click(message):
         bot.send_message(message.from_user.id, f"Registered successfull. "
                                                f"Your telegram id -- {telegram_id}.", reply_markup=markup)
         start(message)
-
-    elif message.text == "View all id of product in the database":
+    elif message.text == "View all id's of products":
         postgres_insert_query = """select id,name from products order by name"""
         cursor.execute(postgres_insert_query, (message.from_user.id,))
         all_idproducts = cursor.fetchall()
@@ -54,7 +53,7 @@ def on_click(message):
         for product in all_idproducts:
             bot.send_message(message.from_user.id, f"{product[1]}--> "
                                                    f"id - {product[0]}")
-    elif message.text == "Add a product to the database":
+    elif message.text == "Add a product":
         bot.send_message(message.from_user.id,
                          "Enter name_product, protein, fat , carbohydrate, kcal "
                          "per 100 grams separated by a space: ")
@@ -116,14 +115,14 @@ def calculation_all_idproducts(message):
         cursor.execute(postgres_insert_query, (days,))
         return cursor.fetchall()
     except ValueError:
-        bot.send_message(message.from_user.id, "Incorrect input days. Please, try again")
         return False
 
 
 def finally_calculation(message):
     idproducts = calculation_all_idproducts(message)
-    if idproducts != False:
-        all_products = view_all_products = all_energy_values = nice_count_of_product = []
+    all_products, view_all_products, all_energy_values, \
+        nice_count_of_product, view_all_products = [], [], [], [], []
+    if idproducts != False and idproducts != []:
         for id in idproducts:
             postgres_insert_query = """select name from products where id=%s"""
             cursor.execute(postgres_insert_query, id)
@@ -132,7 +131,7 @@ def finally_calculation(message):
 
         for name in all_products:
             view_all_products.append(name[0])
-            postgres_insert_query = """select proteins,fats,carbohydrates, kcal from products where name = %s"""
+            postgres_insert_query = """select proteins,fats,carbohydrates, kcal from products where name=%s"""
             cursor.execute(postgres_insert_query, name)
             energy_values = cursor.fetchone()
             all_energy_values.append(energy_values)
@@ -144,12 +143,18 @@ def finally_calculation(message):
             all_carbohydrates += el[2]
             all_kcal += el[3]
         count_of_product = Counter(view_all_products)
+
         for k, v in count_of_product.items():
             nice_count_of_product.append(f"{k}->{v} times\n")
         result_message = f"Нou have eaten the following foods:\n{''.join(nice_count_of_product)}\n" \
                          f"Total amount of protein:  {all_proteins} gr,\nfats: {all_fats} gr,\n" \
                          f"carbohydrates: {all_carbohydrates} gr,\nKcal: {all_kcal}"
         bot.send_message(message.from_user.id, result_message)
+
+    elif idproducts == []:
+        bot.send_message(message.from_user.id, "You haven't eaten anything during this time")
+    else:
+        bot.send_message(message.from_user.id, "Incorrect input days. Please, try again")
 
 
 bot.polling(none_stop=True)
