@@ -28,7 +28,7 @@ def start(message):
         button_1 = types.KeyboardButton("Register")
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True).add(button_1)
         bot.send_message(message.from_user.id, "You are not registered. "
-                                               "Please, click the 'Register' button", reply_markup=markup)
+                                               "Please, click the 'Register' button.  ↓", reply_markup=markup)
         bot.register_next_step_handler(message, on_click)
 
 
@@ -49,22 +49,22 @@ def on_click(message):
         all_idproducts = cursor.fetchall()
         connection.commit()
         bot.send_message(message.from_user.id, "The database contains the following "
-                                               "products and their id's")
+                                               "products and their id's:")
         for product in all_idproducts:
             bot.send_message(message.from_user.id, f"{product[1]}--> "
                                                    f"id - {product[0]}")
     elif message.text == "Add a product":
         bot.send_message(message.from_user.id,
                          "Enter name_product, protein, fat , carbohydrate, kcal "
-                         "per 100 grams separated by a space: ")
+                         "per 100 grams separated by a space.  ↓")
         bot.register_next_step_handler(message, add_product)
     elif message.text == "Enter intake":
         bot.send_message(message.from_user.id,
-                         "Enter your product_id and product quantity in grams by a space: ")
+                         "Enter your product_id and product quantity in grams by a space.  ↓")
         bot.register_next_step_handler(message, intake)
     elif message.text == "Calculation result":
         bot.send_message(message.from_user.id, "For what time period to calculate the result? "
-                                               "Enter the number of days: ")
+                                               "Enter the number of days.  ↓")
         bot.register_next_step_handler(message, finally_calculation)
 
 
@@ -142,10 +142,14 @@ def finally_calculation(message):
             all_fats += el[1]
             all_carbohydrates += el[2]
             all_kcal += el[3]
+
         count_of_product = Counter(view_all_products)
+        #  сортировка употребленных продуктов по количеству употребления
+        #  count_of_product = dict(sorted(count_of_product.items(), key=lambda item: item[1]))
 
         for k, v in count_of_product.items():
             nice_count_of_product.append(f"{k}->{v} times\n")
+        nice_count_of_product = sorted(nice_count_of_product)  # сортировка употребленных продуктов по алфавиту
         result_message = f"Нou have eaten the following foods:\n{''.join(nice_count_of_product)}\n" \
                          f"Total amount of protein:  {all_proteins} gr,\nfats: {all_fats} gr,\n" \
                          f"carbohydrates: {all_carbohydrates} gr,\nKcal: {all_kcal}"
