@@ -1,0 +1,11 @@
+button{
+    background-color: blue;
+    margin:0 auto;
+    border: none;
+    color: yellow;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 30px;}
+h1{color: purple;}

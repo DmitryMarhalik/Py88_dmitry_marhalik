@@ -1,0 +1,9 @@
+body {
+font-family:Verdana;
+background-color:pink
+}
+
+label {margin:0 auto;display:block}
+button{color:yellow; background:blue;margin:0 auto;display:block}
+form {align-content:center}
+h1 {color:green}

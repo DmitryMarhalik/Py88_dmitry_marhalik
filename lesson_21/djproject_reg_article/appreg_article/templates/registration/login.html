@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{%static 'css/login.css'%}"/>
+    <title>login</title>
+</head>
+<body>
+{% block title %}Login{% endblock %}
+{% block content %}
+  <h2>Login</h2>
+    <form method="post">
+      {% csrf_token %}
+      <table align="center">
+        {{ form.as_p }}
+        <tr>
+          <td>&nbsp;</td>
+          <td ><input type="submit" value="Submit"></td>
+        </tr>
+      </table>
+    </form>
+{% endblock %}
+<br>
+<a href="/create"><-Go back</a>
+</body>
+</html>

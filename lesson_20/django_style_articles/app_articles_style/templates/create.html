@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{%static 'css/create.css'%}"/>
+    <title>create</title>
+</head>
+<body>
+<form action="/create/" method="POST">
+    <div class="container" align="center">
+        <label>Name:</label>
+             <input name="name" placeholder="Enter name"><br>
+        <label>E-mail:</label>
+             <input name="email" placeholder="Enter email"><br><br>
+
+            <textarea name="article-header" placeholder="Введите заголовок" cols="80" rows="3"></textarea><br>
+            <textarea name="article-content" placeholder="Напишите здесь статью" cols="80" rows="20"></textarea><br>
+    <button type="submit">Create!</button>
+    </div>
+</form>
+ <a href="/index"><-Go back</a>
+</body>
+</html>

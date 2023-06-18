@@ -1,0 +1,26 @@
+a{color:purple}
+button{
+    background-color: blue;
+    border: none;
+    color: yellow;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 30px;
+    border-radius: 50%;}
+input{
+  padding: 10px;
+  margin:10px 0;
+  border: 2px solid;
+  box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+  border-radius:10px;font-family:Comic Sans MS;
+}
+label {
+
+  /* смещение относительно родительского элемента 10px вверх от верхнего края и   10px влево */
+  top: -10px;
+  left: 10px;
+  background: pink;
+  padding: 0 5px;
+}

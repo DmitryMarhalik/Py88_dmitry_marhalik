@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+     <link rel="stylesheet" href="{%static 'css/index.css'%}"/>
+    <title>startpage</title>
+</head>
+<body>
+<div align="center">
+    <h1>Количество статей: {{count}}</h1>
+    <button  onclick="window.location.href = 'http://127.0.0.1:8000/create/';">Написать новую статью-></button>
+</div>
+</body>
+</html>
