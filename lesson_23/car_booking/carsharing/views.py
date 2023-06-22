@@ -3,7 +3,7 @@ from .models import User, AutoModel, Auto, Brand
 
 
 def main_page(request):
-    auto = Auto.objects.all()
+    auto = Auto.objects.all().order_by('id')
     return render(request, 'main.html', {"auto": auto})
 
 
