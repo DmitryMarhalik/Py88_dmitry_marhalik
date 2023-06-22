@@ -44,4 +44,4 @@ class Auto(models.Model):
     user = models.ForeignKey('User', on_delete=models.SET_NULL, null=True, default=None)
 
     def __str__(self):
-        return f'{self.STATUSES}'
+        return f'{self.pk}'
