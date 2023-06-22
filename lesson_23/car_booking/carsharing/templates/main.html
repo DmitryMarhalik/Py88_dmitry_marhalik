@@ -1,0 +1,20 @@
+{% extends 'index.html' %}
+{% block title %}
+    Main page
+{% endblock %}
+{% block main %}
+<h2>Список авто</h2>
+    <table>
+        <thead><th>Id</th><th>Vin</th><th>model id</th><th>user id</th><th>status</th></thead>
+        {% for ai in auto %}
+        <tr>
+            <td>{{ ai.id }}</td>
+            <td>{{ ai.vin_code }}</td>
+            <td>{{ ai.auto_model_id }}</td>
+            <td>{{ ai.user_id }}</td>
+            <td>{{ ai.status }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

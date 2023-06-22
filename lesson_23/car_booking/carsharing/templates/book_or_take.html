@@ -1,0 +1,19 @@
+{% extends 'index.html' %}
+{% block title %}
+    Book or take
+{% endblock %}
+
+{% block book_or_take %}
+    {% if success_message %}
+        {{ success_message }}
+    {% endif %}
+
+    <form action="" method="POST">
+        {% csrf_token %}
+
+        <label> Id Auto <input type="text" name="idauto" placeholder="id auto"></label><br>
+        <label> Id User<input type="text" name="iduser" placeholder="id user"></label><br>
+        <label> Status Auto<input type="text" name="status" placeholder="status"></label><br>
+        <button>Create</button>
+    </form>
+{% endblock %}

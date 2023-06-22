@@ -1,0 +1,16 @@
+{% extends 'index.html' %}
+{% block title %}
+    Create user
+{% endblock %}
+{% block create_user %}
+    {% if success_message %}
+        {{ success_message }}
+    {% endif %}
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        <label>Name User<input type="text" name="name" placeholder="name"></label><br>
+        <label>Phone User <input type="text" name="phone" placeholder="phone"></label><br>
+        <button>Create</button>
+    </form>
+{% endblock %}
