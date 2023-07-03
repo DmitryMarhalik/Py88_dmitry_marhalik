@@ -3,15 +3,21 @@
     Create car
 {% endblock %}
 {% block create_car %}
-    {% if success_message %}
+    {% if error %}
+    {{ error }}
+    {% else %}
+{#    {% if success_message %}#}
         {{ success_message }}
     {% endif %}
 
     <form action="" method="POST">
         {% csrf_token %}
-        <label> Brand Auto <input type="text" name="brand" placeholder="brand"></label><br>
-        <label>Model Auto <input type="text" name="model" placeholder="model"></label><br>
-        <label>Vin Auto <input type="text" name="vin" placeholder="vin"></label><br>
+        {{ form.vin_code }}<br>
+        {{ form.auto_model }}<br>
+
+{#        <label> Brand Auto <input type="text" name="brand" placeholder="brand"></label><br>#}
+{#        <label>Model Auto <input type="text" name="model" placeholder="model"></label><br>#}
+{#        <label>Vin Auto <input type="text" name="vin" placeholder="vin"></label><br>#}
         <button>Create</button>
     </form>
 {% endblock %}

@@ -6,7 +6,7 @@ class User(models.Model):
     phone = models.CharField(max_length=255, unique=True)
 
     def __str__(self):
-        return f'{self.name}'
+        return f'{self.name}{self.phone}'
 
 
 class Brand(models.Model):
@@ -30,18 +30,26 @@ class AutoModel(models.Model):
     brand = models.ForeignKey('Brand', on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.name}'
+        return f'{self.brand} {self.name}'
 
 
 class Auto(models.Model):
-    STATUSES = (('1', 'FREE'),
-                ('2', 'BOOKED'),
-                ('3', 'TAKEN'))
+    free = 'free'
+    booked = 'booked'
+    taken = 'taken'
+    STATUSES = ((free, 'FREE'),
+                (booked, 'BOOKED'),
+                (taken, 'TAKEN'))
 
     auto_model = models.ForeignKey('AutoModel', on_delete=models.CASCADE)
     vin_code = models.CharField(max_length=255, unique=True)
-    status = models.CharField(max_length=7, choices=STATUSES, default='1')
-    user = models.ForeignKey('User', on_delete=models.SET_NULL, null=True, default=None)
+    status = models.CharField(max_length=7, choices=STATUSES, default=free)
+    user = models.ForeignKey('User', on_delete=models.SET_NULL, null=True, blank=True,default=None)
 
     def __str__(self):
-        return f'{self.pk}'
+        return f'{self.auto_model}'
+
+    class Meta:
+        # verbose_name="Авто"
+        verbose_name_plural="Авто"#множественное название
+
