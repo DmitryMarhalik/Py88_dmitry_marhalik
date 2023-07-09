@@ -1,0 +1,32 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+{% block main %}
+{% endblock %}
+{% block create_user %}
+{% endblock %}
+{% block create_car %}
+{% endblock %}
+{% block book_or_take %}
+{% endblock %}
+</body><br>
+<br>
+<br>
+<br>
+<diV>
+<a href="/">main</a><br>
+<a href="/user">create user</a><br>
+<a href="/car">create car</a><br>
+<a href="/book_or_take">book or take</a>
+</diV>
+</html>

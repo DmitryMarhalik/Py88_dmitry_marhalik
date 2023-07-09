@@ -1,0 +1,20 @@
+{% extends 'index.html' %}
+{% block title %}
+    Create user
+{% endblock %}
+{% block create_user %}
+    {% if error %}
+        {{ error }}<br>
+        <a href=""><-Back</a>
+    {% else %}
+        {{ success_message }}
+    {% endif %}
+    {% if form %}
+        <form action="" method="POST">
+            {% csrf_token %}
+            <label>Your name{{ form.name }}</label> <br>
+            <label>Phone number</label> {{ form.phone }}<br>
+            <button>Create</button>
+        </form>
+    {% endif %}
+{% endblock %}

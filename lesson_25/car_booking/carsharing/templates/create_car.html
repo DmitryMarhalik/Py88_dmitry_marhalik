@@ -1,0 +1,20 @@
+{% extends 'index.html' %}
+{% block title %}
+    Create car
+{% endblock %}
+{% block create_car %}
+    {% if error %}
+        {{ error }}
+        <a href=""><-Back</a>
+    {% else %}
+        <p style="color: #3A7734">{{ success_message }}</p>
+    {% endif %}
+    {% if form %}
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ form.vin_code }}<br>
+            {{ form.auto_model }}<br><br>
+            <button>Create</button>
+        </form><br>
+    {% endif %}
+{% endblock %}

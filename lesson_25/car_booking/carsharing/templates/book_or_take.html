@@ -1,0 +1,22 @@
+{% extends 'index.html' %}
+{% block title %}
+    Book or take
+{% endblock %}
+{% block book_or_take %}
+    {% if message %}
+        <p>{{ message }}</p>  <br>
+        <a href=""><-Back</a>
+    {% else %}
+        <p style="color: green">{{ succ_message }}</p>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {% if form %}
+                <label>Auto{{ form.auto_model }}</label>
+                <label>Vin{{ form.vin_code }}</label>
+                <label>Status{{ form.status }}</label>
+                <label>User</label> {{ form.user }}<br>
+                <button>Create</button>
+            {% endif %}
+        </form>
+    {% endif %}
+{% endblock %}

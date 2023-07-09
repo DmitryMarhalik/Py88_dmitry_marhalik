@@ -1,0 +1,44 @@
+
+.input {
+    width: calc(100% - 10px);
+    margin: 25px;
+    padding: 3px;
+    font-family: "Ubuntu Mono";
+}
+
+.select {
+    width: 100%
+}
+
+form {
+    display: flex;
+    /*fle: center;*/
+    flex-direction: column;
+    max-width: 300px;
+    margin: 0 auto;
+    /*align-items: center*/
+}
+
+button {
+    align-self: end;
+    background-color: navajowhite;
+    color: darkblue;
+    width: 150px
+}
+
+h2 {
+    text-align: center;
+    color: rebeccapurple
+}
+
+label {
+    text-align: center;
+    padding-top: 10px;
+    color: indigo
+}
+
+p {
+    text-align: center;
+    color: red
+}
+a{color: midnightblue}
