@@ -47,4 +47,4 @@ class Auto(models.Model):
     user = models.ForeignKey('User', on_delete=models.SET_NULL, null=True, blank=True, default=None)
 
     def __str__(self):
-        return f' {self.vin_code}'
+        return f'{self.auto_model} {self.vin_code}'

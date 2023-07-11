@@ -1,9 +1,12 @@
 from django.shortcuts import render
 from .forms import AutoForm, UserForm, BookTakeForm
 from .models import Auto
-# from rest_framework.generics import GenericAPIView,ListAPIView
-# from .serializers import AutoSerializer
-# from rest_framework.filters import SearchFilter
+from rest_framework.generics import GenericAPIView, ListAPIView
+from .serializers import AutoSerializer
+from rest_framework.filters import SearchFilter
+from django_filters.rest_framework import DjangoFilterBackend, OrderingFilter
+
+
 #
 # class MainView(ListAPIView):
 #     queryset=Auto.objects.all()
@@ -11,6 +14,13 @@ from .models import Auto
 #     filter_backends = [SearchFilter]
 #     search_fields = ['vin_code']
 #
+class MainView(ListAPIView):
+    queryset = Auto.objects.all()
+    serializer_class = AutoSerializer
+    filter_backends = [SearchFilter]  # ,DjangoFilterBackend,OrderingFilter]
+    search_fields = ['vin_code']
+    # filterset_fields=['status']
+    # ordering_fields=['status']
 
 
 def main_page(request):
