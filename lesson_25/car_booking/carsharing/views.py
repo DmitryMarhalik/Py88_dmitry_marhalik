@@ -1,6 +1,16 @@
 from django.shortcuts import render
 from .forms import AutoForm, UserForm, BookTakeForm
 from .models import Auto
+# from rest_framework.generics import GenericAPIView,ListAPIView
+# from .serializers import AutoSerializer
+# from rest_framework.filters import SearchFilter
+#
+# class MainView(ListAPIView):
+#     queryset=Auto.objects.all()
+#     serializer_class = AutoSerializer
+#     filter_backends = [SearchFilter]
+#     search_fields = ['vin_code']
+#
 
 
 def main_page(request):
